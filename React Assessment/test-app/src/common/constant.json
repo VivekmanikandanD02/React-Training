@@ -1,0 +1,12 @@
+{
+  "mssgArray": ["Well Done!!", "Nice Job!!", "Well Played!!", "Keep Scoring!!"],
+  "congrats": "Congrats for being the top scorer of the match!!",
+  "topScore": 264,
+  "playerScore": "Player Score Counter",
+  "enterRun": "Enter the runs scored by the Batsman:",
+  "add": "Add",
+  "findMssg": "Find the Message here:",
+  "enterName": "Hello, Please enter the name",
+  "welcome": "Welcome to the team ",
+  "navigate": "Navigate to New Page"
+}
