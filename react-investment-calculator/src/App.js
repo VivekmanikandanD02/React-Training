@@ -4,13 +4,21 @@ import InvestmentForm from "./components/InvestmentForm";
 import InvestmentTable from "./components/InvestmentTable";
 import Header from "./components/Header";
 
+const initialInput = {
+  currentSavings: "",
+  yearlySavings: "",
+  expectedInterest: "",
+  investmentDuration: "",
+};
 function App() {
-  const [receivedTableData, setReceivedTableData] = useState([]);
+  const [formValues, setFormValues] = useState(initialInput);
+  //const [receivedTableData, setReceivedTableData] = useState([]);
   const [receivedCurrentSavings, setReceivedCurrentSavings] = useState(0);
-  const tableDataHandler = (formValues) => {
+  const yearlyData = []; // per-year results
+  if (formValues) {
     console.log("App.js");
     console.log(formValues);
-    const yearlyData = []; // per-year results
+    // const yearlyData = []; // per-year results
 
     let currentSavings = +formValues["currentSavings"]; // feel free to change the shape of this input object!
     const yearlyContribution = +formValues["yearlySavings"]; // as mentioned: feel free to change the shape...
@@ -30,22 +38,34 @@ function App() {
       });
     }
 
-    setReceivedTableData(yearlyData);
+    //setReceivedTableData(yearlyData);
+  }
+
+  const handleChange = (field, enteredValue) => {
+    console.log("App.js handlechange");
+    setFormValues((prevState) => ({
+      ...prevState,
+      [field]: enteredValue,
+    }));
   };
-  const fallBackContent = receivedTableData.length === 0 && (
+
+  const fallBackContent = yearlyData.length === 0 && (
     <p style={{ textAlign: "center" }}>No data found.</p>
   );
 
   return (
     <div>
       <Header />
-      <InvestmentForm getTableData={tableDataHandler} />
+      <InvestmentForm
+        handleInputChange={handleChange}
+        updatedFormValues={formValues}
+      />
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
       {fallBackContent}
-      {receivedTableData && (
+      {yearlyData && (
         <InvestmentTable
-          sendTableData={receivedTableData}
+          sendTableData={yearlyData}
           initialInvestment={receivedCurrentSavings}
         />
       )}
