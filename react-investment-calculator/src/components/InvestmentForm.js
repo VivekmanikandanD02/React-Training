@@ -29,6 +29,7 @@ const InvestmentForm = ({ handleInputChange, updatedFormValues }) => {
   };
   const resetHandler = (userInput) => {
     //setFormValues(initialInput);
+    console.log(userInput);
   };
 
   return (

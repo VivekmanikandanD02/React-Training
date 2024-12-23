@@ -45,7 +45,7 @@ function App() {
     console.log("App.js handlechange");
     setFormValues((prevState) => ({
       ...prevState,
-      [field]: enteredValue,
+      [field]: +enteredValue,
     }));
   };
 
